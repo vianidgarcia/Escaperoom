@@ -25,6 +25,7 @@ namespace JuegoEscaperoom
             this.Text = $"Inspeccionando: {this.acertijo.NombreObjeto}";
             lblPregunta.Text = this.acertijo.Pregunta;
             lblIntentos.Text = $"Intentos: {this.acertijo.Intentos}";
+            btnPista.Visible = false; // Solo mostrar después de algunos intentos
 
         }
 
@@ -41,6 +42,13 @@ namespace JuegoEscaperoom
         private void Validar()
         {
             string respuestaUsuario = txtRespuesta.Text;
+            if (string.IsNullOrWhiteSpace(respuestaUsuario))
+            {
+                MessageBox.Show("Por favor, ingresa una respuesta antes de validar.", "Campo vacío",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtRespuesta.Focus();
+                return;
+            }
 
             // Usamos el método Resolver que ya definimos en la clase base
             if (this.acertijo.Resolver(respuestaUsuario))

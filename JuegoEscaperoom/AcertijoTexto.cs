@@ -1,4 +1,5 @@
 ﻿using JuegoEscaperoom.EscapeRoomPOO;
+using JuegoEscaperoom.JuegoEscaperoomS;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,18 +12,19 @@ namespace JuegoEscaperoom
     {
         private readonly string _respuestaCorrecta;
 
-        public AcertijoTexto(string nombre, string pregunta, string respuesta, Rectangle area, string pista = "", string itemReq = "", string itemRec = "")
+        public AcertijoTexto(string nombre, string pregunta, string respuesta,
+                        string pista = "", string itemReq = "", string itemRec = "", Habitacion? habitacionDestino = null)
         {
             NombreObjeto = nombre;
             Pregunta = pregunta;
-            _respuestaCorrecta = Normalizar(respuesta);
-            AreaInteractiva = area;
             Pista = pista;
             ItemRequerido = itemReq;
+            HabitacionDestino = habitacionDestino;
             ItemRecompensa = itemRec;
+            _respuestaCorrecta = Normalizar(respuesta);
         }
 
         public override bool ValidarRespuesta(string respuesta)
-            => Normalizar(respuesta) == _respuestaCorrecta;
+        { return Normalizar(respuesta) == _respuestaCorrecta; }
     }
 }

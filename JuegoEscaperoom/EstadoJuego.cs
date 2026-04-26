@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JuegoEscaperoom.JuegoEscaperoomS;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,20 +10,33 @@ namespace JuegoEscaperoom
     public class EstadoJuego
     {
         public int Puntaje { get; set; } = 0;
-        public string HabitacionActual { get; set; } = "Habitacion";
-
-        // Objetos que ya recogió el jugador
-        public List<string> Inventario { get; set; } = new();
-
-        // Nombres de objetos/acertijos ya resueltos
-        public List<string> ObjetosResueltos { get; set; } = new();
-
-        // Pistas que ya encontró
-        public List<string> PistasEncontradas { get; set; } = new();
-
-        // Para saber si la intro ya se vio
+        public Habitacion HabitacionActual { get; set; } = Habitacion.Cuarto;
         public bool IntroVista { get; set; } = false;
-
         public DateTime FechaGuardado { get; set; } = DateTime.Now;
+
+        // Las listas deben ser propiedades públicas con get y set para guardarse correctamente
+        public List<string> Inventario { get; set; } = new();
+        public List<string> ObjetosResueltos { get; set; } = new();
+        public void SumarPuntos(int puntos)
+        {
+            if (puntos > 0) Puntaje += puntos;
+        }
+
+        public void RegistrarObjetoResuelto(string nombreObjeto)
+        {
+            if (!ObjetosResueltos.Contains(nombreObjeto))
+                ObjetosResueltos.Add(nombreObjeto);
+        }
+
+        public void AgregarAlInventario(string item)
+        {
+            if (!string.IsNullOrEmpty(item) && !Inventario.Contains(item))
+                Inventario.Add(item);
+        }
+
+        public void CambiarHabitacion(Habitacion nuevaHabitacion)
+        {
+            HabitacionActual = nuevaHabitacion;
+        }
     }
 }

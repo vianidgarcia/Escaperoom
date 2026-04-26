@@ -1,4 +1,5 @@
 ﻿using JuegoEscaperoom.EscapeRoomPOO;
+using JuegoEscaperoom.JuegoEscaperoomS;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,14 +12,14 @@ namespace JuegoEscaperoom
     {
         private readonly int _numeroCorrecto;
 
-        public AcertijoNumerico(string nombre, string pregunta, int numero, Rectangle area,
-                                string pista = "", string itemRec = "")
+        public AcertijoNumerico(string nombre, string pregunta, int numero,
+                            string pista = "", string itemRec = "", Habitacion? habitacionDestino = null)
         {
             NombreObjeto = nombre;
             Pregunta = pregunta;
             _numeroCorrecto = numero;
-            AreaInteractiva = area;
             Pista = pista;
+            HabitacionDestino = habitacionDestino;
             ItemRecompensa = itemRec;
         }
 

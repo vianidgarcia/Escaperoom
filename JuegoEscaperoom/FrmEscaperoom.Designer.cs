@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            pbxHabitacion = new PictureBox();
+            pbxEscena = new PictureBox();
             pnlDialogo = new Panel();
             pbxIconoPersonaje = new PictureBox();
             lblDialogo = new Label();
@@ -39,21 +39,21 @@
             pnlInventario = new Panel();
             lblInventario = new Label();
             lblPuntaje = new Label();
-            ((System.ComponentModel.ISupportInitialize)pbxHabitacion).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbxEscena).BeginInit();
             pnlDialogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbxIconoPersonaje).BeginInit();
             pnlInventario.SuspendLayout();
             SuspendLayout();
             // 
-            // pbxHabitacion
+            // pbxEscena
             // 
-            pbxHabitacion.Location = new Point(7, 35);
-            pbxHabitacion.Name = "pbxHabitacion";
-            pbxHabitacion.Size = new Size(794, 450);
-            pbxHabitacion.SizeMode = PictureBoxSizeMode.Zoom;
-            pbxHabitacion.TabIndex = 0;
-            pbxHabitacion.TabStop = false;
-            pbxHabitacion.MouseClick += pbxHabitacion_MouseClick;
+            pbxEscena.Location = new Point(7, 35);
+            pbxEscena.Name = "pbxEscena";
+            pbxEscena.Size = new Size(794, 450);
+            pbxEscena.SizeMode = PictureBoxSizeMode.Zoom;
+            pbxEscena.TabIndex = 0;
+            pbxEscena.TabStop = false;
+            pbxEscena.MouseClick += pbxEscena_MouseClick;
             // 
             // pnlDialogo
             // 
@@ -150,11 +150,11 @@
             Controls.Add(pnlInventario);
             Controls.Add(btnPausa);
             Controls.Add(pnlDialogo);
-            Controls.Add(pbxHabitacion);
+            Controls.Add(pbxEscena);
             Name = "FrmEscaperoom";
             Text = "FrmEscaperoom";
             FormClosing += FrmEscaperoom_FormClosing;
-            ((System.ComponentModel.ISupportInitialize)pbxHabitacion).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbxEscena).EndInit();
             pnlDialogo.ResumeLayout(false);
             pnlDialogo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pbxIconoPersonaje).EndInit();
@@ -166,7 +166,7 @@
 
         #endregion
 
-        private PictureBox pbxHabitacion;
+        private PictureBox pbxEscena;
         private Panel pnlDialogo;
         private Label lblDialogo;
         private Button btnPausa;

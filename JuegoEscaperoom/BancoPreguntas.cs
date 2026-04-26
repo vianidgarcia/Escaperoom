@@ -35,11 +35,9 @@ namespace JuegoEscaperoom
                 //acertijo aleatorio para la caja fuerte
                 var acertijosCaja = new List<Acertijo>
             {
-                new AcertijoNumerico("Caja Fuerte", "Si 1=5, 2=25, 3=125, ¿cuánto es 5?", 1,
-                    new Rectangle(600, 300, 50, 50), "No te compliques, lee la primera igualdad.", "Nota con Manchas"),
+                new AcertijoNumerico("Caja Fuerte", "Si 1=5, 2=25, 3=125, ¿cuánto es 5?", 5,"No te compliques, lee la primera igualdad.", "Nota con Manchas"),
 
-                new AcertijoNumerico("Caja Fuerte", "Código de 4 dígitos: El primero es la mitad del segundo, el tercero es el doble del cuarto. La suma es 15. (Pista: 2463)", 2463,
-                    new Rectangle(600, 300, 50, 50), "Prueba con el número de la pista.", "Nota con Manchas")
+                new AcertijoNumerico("Caja Fuerte", "Código de 4 dígitos: El primero es la mitad del segundo, el tercero es el doble del cuarto. La suma es 15. (Pista: 2463)", 2463, "Prueba con el número de la pista.", "Nota con Manchas")
             };
 
                 var cajaFuerte = acertijosCaja[_rng.Next(acertijosCaja.Count)];
@@ -48,11 +46,11 @@ namespace JuegoEscaperoom
                 var computadora = new AcertijoTexto(
                     "Computadora",
                     "USUARIO BLOQUEADO. Ingrese el nombre del propietario:",
-                    "LEON", 
-                    new Rectangle(11, 240, 50, 50),
+                    "LEON",
                     "Mira la nota de tu inventario de cabeza",
                     "Nota con Manchas",
-                    "Llave de la Cocina"
+                    "Llave de la Cocina",
+                    Habitacion.Cocina
                 );
 
                 return new List<Acertijo> { cajaFuerte, computadora };
@@ -67,13 +65,12 @@ namespace JuegoEscaperoom
                     "Soporte de Cuchillos",
                     "Hay 5 espacios, pero solo 4 cuchillos. Falta el que está entre el segundo y el cuarto. ¿Qué número de espacio es?",
                     3,
-                    new Rectangle(340, 185, 144, 61),
                     "Cuenta los espacios de izquierda a derecha.",
                     "Fusible Gastado"
                 ),
 
 
-                new AcertijoTexto("Grifo goteante", "Limpia el pecado, pero nunca la memoria. ¿Qué fluye aquí que la vida entrega y quita?", "Agua", new Rectangle(82, 245, 45, 34),"Es un elemento vital.", "Fusible Gastado"
+                new AcertijoTexto("Grifo goteante", "Limpia el pecado, pero nunca la memoria. ¿Qué fluye aquí que la vida entrega y quita?", "Agua","Es un elemento vital.", "Fusible Gastado", habitacionDestino: Habitacion.Biblioteca
                 )
             };
             }
@@ -86,7 +83,7 @@ namespace JuegoEscaperoom
                     "Terminal Antigua",
                     "Traducción de sistema: 01010011 01001111 01010011. ¿Qué palabra forman estas siglas?",
                     "SOS",
-                    new Rectangle(278, 2, 83, 37),
+                    
                     "Es una señal de auxilio internacional.",
                     "", "Tijeras Oxidadas"
                 ),
@@ -95,10 +92,10 @@ namespace JuegoEscaperoom
                     "Libro de Cuero",
                     "En la última página dice: 'Soy alguien que cuenta historias, pero nunca vive la suya'. ¿Quién soy?",
                     "ESCRITOR",
-                    new Rectangle(557, 97, 50, 40),
+                    
                     "La profesión de quien escribió este libro.",
                     "Tijeras Oxidadas",
-                    "Llave Maestra"
+                    "Llave Maestra", Habitacion.Salida
                 )
             };
             }
@@ -111,7 +108,7 @@ namespace JuegoEscaperoom
                     "Puerta Final",
                     "Si dices mi nombre, me rompes. ¿Cuál es mi nombre?",
                     "Silencio",
-                    new Rectangle(252, 29, 521, 325),
+                   
                     "Lo opuesto al ruido",
                     "Llave Maestra",
                     ""
