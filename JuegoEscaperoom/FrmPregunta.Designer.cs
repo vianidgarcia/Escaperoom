@@ -124,6 +124,7 @@
             Controls.Add(lblTimer);
             Controls.Add(lblPregunta);
             Name = "FrmPregunta";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FrmPregunta";
             Load += FrmPregunta_Load;
             ResumeLayout(false);

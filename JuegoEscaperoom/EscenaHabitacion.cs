@@ -27,9 +27,9 @@ namespace JuegoEscaperoom
 
         public Acertijo GetAcertijoEnPunto(Point punto)
         {
-            return _mapaInteractivo
-                .FirstOrDefault(kvp => kvp.Value.Contains(punto))
-                .Key;
+            foreach (var kvp in _mapaInteractivo)
+                if (kvp.Value.Contains(punto)) return kvp.Key;
+            return null;
         }
 
         public IEnumerable<Rectangle> ObtenerAreas() => _mapaInteractivo.Values;

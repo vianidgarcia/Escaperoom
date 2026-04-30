@@ -152,6 +152,7 @@
             Controls.Add(pnlDialogo);
             Controls.Add(pbxEscena);
             Name = "FrmEscaperoom";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FrmEscaperoom";
             FormClosing += FrmEscaperoom_FormClosing;
             ((System.ComponentModel.ISupportInitialize)pbxEscena).EndInit();

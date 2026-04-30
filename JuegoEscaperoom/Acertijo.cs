@@ -38,6 +38,11 @@ namespace JuegoEscaperoom
                 return false;
             }
 
+            public void MarcarComoResuelto()
+            { 
+                Resuelto = true; 
+            }
+
             protected string Normalizar(string texto) =>
                 texto?.Trim().ToLowerInvariant().Replace("á", "a").Replace("é", "e").Replace("í", "i").Replace("ó", "o").Replace("ú", "u") ?? "";
         }

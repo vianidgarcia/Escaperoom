@@ -3,20 +3,33 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace JuegoEscaperoom
 {
     public class EstadoJuego
     {
-        public int Puntaje { get; set; } = 0;
-        public Habitacion HabitacionActual { get; set; } = Habitacion.Cuarto;
+        public int Puntaje { get; private set; } = 0;
+        public Habitacion HabitacionActual { get; private set; } = Habitacion.Cuarto;
         public bool IntroVista { get; set; } = false;
         public DateTime FechaGuardado { get; set; } = DateTime.Now;
+        public List<string> Inventario { get; private set; } = new();
+        public List<string> ObjetosResueltos { get; private set; } = new();
 
-        // Las listas deben ser propiedades públicas con get y set para guardarse correctamente
-        public List<string> Inventario { get; set; } = new();
-        public List<string> ObjetosResueltos { get; set; } = new();
+        public EstadoJuego() { } // partida nueva
+
+        [JsonConstructor]
+        public EstadoJuego(int puntaje, Habitacion habitacionActual, bool introVista,
+                           DateTime fechaGuardado, List<string> inventario, List<string> objetosResueltos)
+        {
+            Puntaje = puntaje;
+            HabitacionActual = habitacionActual;
+            IntroVista = introVista;
+            FechaGuardado = fechaGuardado;
+            Inventario = inventario ?? new();
+            ObjetosResueltos = objetosResueltos ?? new();
+        }
         public void SumarPuntos(int puntos)
         {
             if (puntos > 0) Puntaje += puntos;

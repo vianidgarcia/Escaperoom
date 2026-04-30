@@ -122,6 +122,7 @@
             Controls.Add(lblPuntaje);
             Controls.Add(lblInventarioResumen);
             Name = "FrmPausa";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FrmPausa";
             ResumeLayout(false);
             PerformLayout();

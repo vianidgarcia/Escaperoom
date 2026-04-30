@@ -34,7 +34,6 @@ namespace JuegoEscaperoom
         private void IniciarPartidaNueva()
         {
             estado = new EstadoJuego();
-            estado.CambiarHabitacion(Habitacion.Cuarto);
             CargarHabitacion(Habitacion.Cuarto);
             MostrarDialogoAnimado("¿Donde estoy? Todo parece una pesadilla... debo salir de aquí.");
         }
@@ -45,12 +44,20 @@ namespace JuegoEscaperoom
 
             foreach (var acertijo in acertijos)
             {
+                if (estado.ObjetosResueltos.Contains(acertijo.NombreObjeto))
+                {
+                    acertijo.MarcarComoResuelto();
+                }
+                else
+                {
+                    acertijo.AlResolver += (itemRecompensa) =>
+                    {
+                        ManejarExitoAcertijo(acertijo, itemRecompensa);
+                    };
+                }
+
                 Rectangle area = MapaCoordenadas.ObtenerArea(hab, acertijo.NombreObjeto);
                 escenaActual.RegistrarObjeto(acertijo, area);
-                acertijo.AlResolver += (itemRecompensa) =>
-                {
-                    ManejarExitoAcertijo(acertijo, itemRecompensa);
-                };
             }
 
             pbxEscena.Image = escenaActual.Fondo;
@@ -79,7 +86,6 @@ namespace JuegoEscaperoom
 
         private void ManejarExitoAcertijo(Acertijo acertijo, string recompensa)
         {
-            // Actualizamos el estado blindado
             estado.RegistrarObjetoResuelto(acertijo.NombreObjeto);
             estado.SumarPuntos(100);
 
@@ -91,13 +97,13 @@ namespace JuegoEscaperoom
             }
             else
             {
-                MostrarDialogoAnimado($"He resuelto el misterio del {acertijo.NombreObjeto}.");
+                MostrarDialogoAnimado($"He resuelto el acertijo: {acertijo.NombreObjeto}.");
             }
 
             // Lógica de navegación: Si el acertijo lleva a otra habitación
             if (acertijo.HabitacionDestino.HasValue)
             {
-                MessageBox.Show($"¡Progreso! Se ha desbloqueado el acceso a: {acertijo.HabitacionDestino}", "Escape Room");
+                MostrarDialogoAnimado($"¡Progreso! Se ha desbloqueado el acceso a: {acertijo.HabitacionDestino}");
                 CargarHabitacion(acertijo.HabitacionDestino.Value);
             }
 
@@ -124,17 +130,14 @@ namespace JuegoEscaperoom
                     return;
                 }
 
-                // Verificamos ítem requerido usando el inventario protegido
                 if (!string.IsNullOrEmpty(acertijo.ItemRequerido) && !estado.Inventario.Contains(acertijo.ItemRequerido))
                 {
                     MostrarDialogoAnimado($"Parece bloqueado... Necesito [{acertijo.ItemRequerido}].");
                     return;
                 }
 
-                // Abrir FrmPregunta
                 using (var frm = new FrmPregunta(acertijo))
                 {
-                    // Nota: FrmPregunta debe llamar a acertijo.Resolver() internamente
                     frm.ShowDialog();
                 }
             }
